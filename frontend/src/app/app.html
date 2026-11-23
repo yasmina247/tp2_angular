@@ -1,0 +1,64 @@
+<div class="container">
+
+  <h2>Gestion des tâches</h2>
+
+  <!-- Formulaire d'ajout -->
+  <form (ngSubmit)="addTask()">
+
+    <input
+      type="text"
+      name="title"
+      [(ngModel)]="newTaskTitle"
+      placeholder="Titre de la tâche"
+    >
+
+    <button type="submit">
+      Ajouter une tâche
+    </button>
+
+  </form>
+
+  <!-- Liste des tâches -->
+  <div class="task-list">
+
+    <div
+      class="task-item"
+      *ngFor="let task of tasks"
+    >
+
+      <div class="task-content">
+
+        <h3 [class.completed]="task.completed">
+          {{ task.title }}
+        </h3>
+
+        <p>
+          Statut :
+          {{ task.completed ? 'Terminée' : 'Non terminée' }}
+        </p>
+
+      </div>
+
+      <div class="task-actions">
+
+        <button
+          (click)="toggleTask(task)"
+          class="btn-success"
+        >
+          {{ task.completed ? 'Reprendre' : 'Terminer' }}
+        </button>
+
+        <button
+          (click)="deleteTask(task)"
+          class="btn-danger"
+        >
+          Supprimer
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
